@@ -53,7 +53,7 @@ export default function ResultsSection({ answers, onRestart }) {
                 
                 return (
                   <div 
-                    key={idx} 
+                    key={career.title || idx} 
                     className={`overflow-hidden rounded-[2rem] md:rounded-[2.5rem] border transition-all duration-700 relative backdrop-blur-md group/card ${
                       isExpanded 
                         ? 'border-indigo-500/40 bg-slate-900/60 shadow-[0_20px_50px_rgba(79,70,229,0.15)] md:scale-[1.02]' 
@@ -281,8 +281,8 @@ export default function ResultsSection({ answers, onRestart }) {
                 Alternative Paths
               </h3>
               <div className="space-y-4">
-                {answers.alternative_paths.map((alt, idx) => (
-                  <div key={idx} className="p-5 md:p-6 rounded-2xl bg-black/20 border border-slate-800 border-l-4 border-l-teal-500/50 hover:bg-black/30 transition-colors shadow-inner">
+                {answers?.alternative_paths?.map((alt, idx) => (
+                  <div key={alt.title || idx} className="p-5 md:p-6 rounded-2xl bg-black/20 border border-slate-800 border-l-4 border-l-teal-500/50 hover:bg-black/30 transition-colors shadow-inner">
                     <h4 className="text-base md:text-lg font-bold text-slate-100 mb-1 md:mb-2">{alt.title}</h4>
                     <p className="text-xs md:text-sm text-slate-400 leading-relaxed font-light">{alt.description}</p>
                   </div>
@@ -304,8 +304,8 @@ export default function ResultsSection({ answers, onRestart }) {
                 What To Avoid
               </h3>
               <div className="space-y-4 relative z-10">
-                {answers.what_to_avoid.map((item, idx) => (
-                  <div key={idx} className="flex gap-3 md:gap-4 p-4 md:p-5 rounded-2xl bg-black/30 border border-red-500/10 items-start hover:bg-black/40 transition-colors shadow-inner">
+                {answers?.what_to_avoid?.map((item, idx) => (
+                  <div key={item.pitfall || idx} className="flex gap-3 md:gap-4 p-4 md:p-5 rounded-2xl bg-black/30 border border-red-500/10 items-start hover:bg-black/40 transition-colors shadow-inner">
                     <div className="mt-1 p-1 rounded bg-red-500/20 text-red-400">
                       <svg className="w-3 h-3 md:w-4 md:h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />

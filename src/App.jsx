@@ -8,6 +8,7 @@ function App() {
   const [isCooldown, setIsCooldown] = useState(false)
 
   const handleScanComplete = async (answers) => {
+    if (appState === 'loading') return; // Prevent double-clicks
     setAppState('loading');
     
     // Add artificial delay to respect rate limits and improve perceived value
@@ -39,6 +40,9 @@ function App() {
       console.error("Failed to connect to backend", error);
       setAppState('error');
     }
+  const handleRestart = () => {
+    setScanAnswers(null);
+    setAppState('home');
   };
 
   return (
@@ -46,7 +50,7 @@ function App() {
       {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b border-slate-800 bg-slate-950/80 backdrop-blur-md">
         <div className="container mx-auto px-4 h-16 flex items-center justify-between">
-          <div className="flex items-center gap-2 cursor-pointer" onClick={() => setAppState('home')}>
+          <div className="flex items-center gap-2 cursor-pointer" onClick={handleRestart}>
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/20">
               PF
             </div>
@@ -180,7 +184,7 @@ function App() {
         )}
 
         {appState === 'results' && (
-          <ResultsSection answers={scanAnswers} onRestart={() => setAppState('home')} />
+          <ResultsSection answers={scanAnswers} onRestart={handleRestart} />
         )}
         
       </main>
