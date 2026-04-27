@@ -35,7 +35,7 @@ function App() {
     
     // Create an AbortController for the timeout
     const controller = new AbortController();
-    const timeoutId = setTimeout(() => controller.abort(), 20000); // 20 second timeout
+    const timeoutId = setTimeout(() => controller.abort(), 45000); // 45 second timeout
     
     try {
       const response = await fetch('https://pathfinder-backend-two.vercel.app/api/analyze-path', {
