@@ -281,7 +281,7 @@ export default function PersonalityScan({ onComplete }) {
                 <div className="grid grid-cols-1 gap-3">
                   {currentQuestion.options.map((option, idx) => (
                     <button
-                      key={idx}
+                      key={`${currentQuestion.id}-${idx}`}
                       onClick={() => handleNext(option)}
                       className={`group w-full px-5 py-3.5 md:px-6 md:py-4 rounded-xl border transition-all duration-200 text-left font-medium flex items-center justify-between text-sm md:text-base
                         ${answers[currentQuestion.id] === option 
